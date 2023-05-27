@@ -138,40 +138,40 @@ class LinkedinJobSearchAgent:
             job_title = self.driver.find_element(By.TAG_NAME, "h1").text
             for content in contents:
                 print(f"Scraping the Job Offer {content}")
-                # try:
-                self.state["job_titles"].append(
-                    content.find_element(By.TAG_NAME, "h1").text
-                )
-                self.state["company_names"].append(
-                    content.find_element(
-                        By.CLASS_NAME, "jobs-unified-top-card__company-name"
-                    ).text
-                )
-                self.state["company_locations"].append(
-                    content.find_element(
-                        By.CLASS_NAME, "jobs-unified-top-card__bullet"
-                    ).text
-                )
-                self.state["work_methods"].append(
-                    content.find_element(
-                        By.CLASS_NAME, "jobs-unified-top-card__workplace-type"
-                    ).text
-                )
-                self.state["post_dates"].append(
-                    content.find_element(
-                        By.CLASS_NAME, "jobs-unified-top-card__posted-date"
-                    ).text
-                )
-                self.state["work_times"].append(
-                    content.find_element(
-                        By.CLASS_NAME, "jobs-unified-top-card__job-insight"
-                    ).text
-                )
-                print(f"Scraping the Job Offer {j} DONE.")
-                j += 1
+                try:
+                    self.state["job_titles"].append(
+                        content.find_element(By.TAG_NAME, "h1").text
+                    )
+                    self.state["company_names"].append(
+                        content.find_element(
+                            By.CLASS_NAME, "jobs-unified-top-card__company-name"
+                        ).text
+                    )
+                    self.state["company_locations"].append(
+                        content.find_element(
+                            By.CLASS_NAME, "jobs-unified-top-card__bullet"
+                        ).text
+                    )
+                    self.state["work_methods"].append(
+                        content.find_element(
+                            By.CLASS_NAME, "jobs-unified-top-card__workplace-type"
+                        ).text
+                    )
+                    self.state["post_dates"].append(
+                        content.find_element(
+                            By.CLASS_NAME, "jobs-unified-top-card__posted-date"
+                        ).text
+                    )
+                    self.state["work_times"].append(
+                        content.find_element(
+                            By.CLASS_NAME, "jobs-unified-top-card__job-insight"
+                        ).text
+                    )
+                    print(f"Scraping the Job Offer {j} DONE.")
+                    j += 1
 
-                # except:
-                #     pass
+                except:
+                    pass
                 time.sleep(2)
 
                 # Scraping the job description
@@ -224,7 +224,7 @@ class LinkedinJobSearchAgent:
             encoding="utf-8",
         ) as f:
             for line in self.state["job_desc"]:
-                line = line + "{pagebreak}"
+                line = line + "\n {pagebreak}"
                 f.write(line)
                 f.write("\n")
 
