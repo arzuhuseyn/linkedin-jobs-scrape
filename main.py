@@ -117,6 +117,7 @@ class LinkedinJobSearchAgent:
     def visit_each_link_one_by_one_to_scrape_the_information(self):
         # Visit each link one by one to scrape the information
         print("Visiting the links and collecting information just started.")
+        j = 1
         for i in range(len(self.state["links"])):
             try:
                 print(f"Visiting the link: {i}")
