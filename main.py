@@ -130,15 +130,15 @@ class LinkedinJobSearchAgent:
             except:
                 pass
 
-        # Find the general information of the job offers
-        contents = self.driver.find_elements(By.CLASS_NAME, "p5")
-        company_name = self.driver.find_element(
-            By.CLASS_NAME, "jobs-unified-top-card__company-name"
-        ).text
-        job_title = self.driver.find_element(By.TAG_NAME, "h1").text
-        for content in contents:
-            print(f"Scraping the Job Offer {content}")
-            try:
+            # Find the general information of the job offers
+            contents = self.driver.find_elements(By.CLASS_NAME, "p5")
+            company_name = self.driver.find_element(
+                By.CLASS_NAME, "jobs-unified-top-card__company-name"
+            ).text
+            job_title = self.driver.find_element(By.TAG_NAME, "h1").text
+            for content in contents:
+                print(f"Scraping the Job Offer {content}")
+                # try:
                 self.state["job_titles"].append(
                     content.find_element(By.TAG_NAME, "h1").text
                 )
@@ -170,25 +170,25 @@ class LinkedinJobSearchAgent:
                 print(f"Scraping the Job Offer {j} DONE.")
                 j += 1
 
-            except:
-                pass
-            time.sleep(2)
+                # except:
+                #     pass
+                time.sleep(2)
 
-            # Scraping the job description
-        job_description = self.driver.find_elements(
-            By.CLASS_NAME, "jobs-description__content"
-        )
-        for description in job_description:
-            job_text = description.find_element(
-                By.CLASS_NAME, "jobs-box__html-content"
-            ).text
-            job_text = f"Company Name: {company_name} \n Job Title: {job_title} \n"
-            job_text = (
-                job_text + f"\n LinkedIn Job Offer Link: {self.driver.current_url}"
+                # Scraping the job description
+            job_description = self.driver.find_elements(
+                By.CLASS_NAME, "jobs-description__content"
             )
-            self.state["job_desc"].append(job_text)
-            print(f"Scraping the Job Offer {j}")
-            time.sleep(2)
+            for description in job_description:
+                job_text = description.find_element(
+                    By.CLASS_NAME, "jobs-box__html-content"
+                ).text
+                job_text = f"Company Name: {company_name} \n Job Title: {job_title} \n"
+                job_text = (
+                    job_text + f"\n LinkedIn Job Offer Link: {self.driver.current_url}"
+                )
+                self.state["job_desc"].append(job_text)
+                print(f"Scraping the Job Offer {j}")
+                time.sleep(2)
 
     def create_csv(self):
         # Creating the dataframe
