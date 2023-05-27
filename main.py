@@ -9,6 +9,7 @@ from selenium.webdriver.common.by import By
 
 from config import config
 
+
 def safe_fail(func):
     def inner(*args, **kwargs):
         try:
@@ -182,7 +183,7 @@ class LinkedinJobSearchAgent:
                 job_text = description.find_element(
                     By.CLASS_NAME, "jobs-box__html-content"
                 ).text
-                job_text = f"Company Name: {company_name} \n Job Title: {job_title} \n"
+                job_text = f"Company Name: {company_name} \n Job Title: {job_title} \n" + job_text
                 job_text = (
                     job_text + f"\n LinkedIn Job Offer Link: {self.driver.current_url}"
                 )
