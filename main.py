@@ -183,7 +183,7 @@ class LinkedinJobSearchAgent:
             ).text
             job_text = f"Company Name: {company_name} \n Job Title: {job_title} \n"
             job_text = (
-                job_text + f"\n LinkedIn Job Offer Link: {self.state['links'][i]}"
+                job_text + f"\n LinkedIn Job Offer Link: {self.driver.current_url}"
             )
             self.state["job_desc"].append(job_text)
             print(f"Scraping the Job Offer {j}")
