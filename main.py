@@ -57,6 +57,7 @@ class LinkedinJobSearchAgent:
         self.driver.get("https://www.linkedin.com/login")
         time.sleep(2)
 
+    @safe_fail
     def accept_cookies(self):
         self.driver.find_element("xpath", Xpath.ACCEPT_COOKIES).click()
 
