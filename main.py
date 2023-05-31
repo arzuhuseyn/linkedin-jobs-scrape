@@ -111,7 +111,7 @@ class LinkedinJobSearchAgent:
 
             print(f"Collecting the links in the page: {page-1}")
             # go to next page:
-            self.driver.find_element(By.XPATH, f"//button[@aria-label='Page {page}']")
+            self.driver.find_element(By.XPATH, f"//button[@aria-label='Page {page}']").click()
             time.sleep(3)
         print("Found " + str(len(self.state["links"])) + " links for job offers")
         return self.state["links"]
