@@ -57,6 +57,7 @@ class LinkedinJobSearchAgent:
         self.driver.get("https://www.linkedin.com/login")
         time.sleep(2)
 
+    @safe_fail
     def accept_cookies(self):
         self.driver.find_element("xpath", Xpath.ACCEPT_COOKIES).click()
 
@@ -110,7 +111,7 @@ class LinkedinJobSearchAgent:
 
             print(f"Collecting the links in the page: {page-1}")
             # go to next page:
-            self.driver.find_element(By.XPATH, f"//button[@aria-label='Page {page}']")
+            self.driver.find_element(By.XPATH, f"//button[@aria-label='Page {page}']").click()
             time.sleep(3)
         print("Found " + str(len(self.state["links"])) + " links for job offers")
         return self.state["links"]
